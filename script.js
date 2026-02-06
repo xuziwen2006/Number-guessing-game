@@ -34,14 +34,24 @@ const elements = {
     answerDisplay: document.getElementById('answerDisplay'),
     finalAttempts: document.getElementById('finalAttempts'),
     performanceRating: document.getElementById('performanceRating'),
-    modalCloseBtn: document.getElementById('modalCloseBtn'),
-    newGameModalBtn: document.getElementById('newGameModalBtn'),
     
-    // 其他按钮
+    // 规则和策略模态框
+    rulesModal: document.getElementById('rulesModal'),
+    strategyModal: document.getElementById('strategyModal'),
+    
+    // 按钮
     showAnswerBtn: document.getElementById('showAnswerBtn'),
     hintBtn: document.getElementById('hintBtn'),
     resetBtn: document.getElementById('resetBtn'),
-    shareBtn: document.getElementById('shareBtn')
+    shareBtn: document.getElementById('shareBtn'),
+    rulesBtn: document.getElementById('rulesBtn'),
+    strategyBtn: document.getElementById('strategyBtn'),
+    
+    // 关闭按钮
+    modalCloseBtn: document.getElementById('modalCloseBtn'),
+    newGameModalBtn: document.getElementById('newGameModalBtn'),
+    closeRulesBtn: document.querySelector('.close-rules'),
+    closeStrategyBtn: document.querySelector('.close-strategy')
 };
 
 // 生成四位无重复数字
@@ -291,6 +301,16 @@ function showSuccessModal() {
     elements.successModal.style.display = 'block';
 }
 
+// 显示规则模态框
+function showRulesModal() {
+    elements.rulesModal.style.display = 'block';
+}
+
+// 显示策略模态框
+function showStrategyModal() {
+    elements.strategyModal.style.display = 'block';
+}
+
 // 显示答案
 function showAnswer() {
     if (!gameState.gameOver) {
@@ -345,6 +365,11 @@ function shareResult() {
     }
 }
 
+// 关闭模态框
+function closeModal(modal) {
+    modal.style.display = 'none';
+}
+
 // 事件监听
 function setupEventListeners() {
     // 猜测按钮
@@ -387,22 +412,47 @@ function setupEventListeners() {
         resetGame();
     });
     
+    // 规则和策略按钮
+    elements.rulesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showRulesModal();
+    });
+    
+    elements.strategyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showStrategyModal();
+    });
+    
     // 模态框按钮
     elements.modalCloseBtn.addEventListener('click', () => {
-        elements.successModal.style.display = 'none';
+        closeModal(elements.successModal);
     });
     
     elements.newGameModalBtn.addEventListener('click', () => {
-        elements.successModal.style.display = 'none';
+        closeModal(elements.successModal);
         initGame();
     });
+    
+    if (elements.closeRulesBtn) {
+        elements.closeRulesBtn.addEventListener('click', () => {
+            closeModal(elements.rulesModal);
+        });
+    }
+    
+    if (elements.closeStrategyBtn) {
+        elements.closeStrategyBtn.addEventListener('click', () => {
+            closeModal(elements.strategyModal);
+        });
+    }
     
     elements.shareBtn.addEventListener('click', shareResult);
     
     // 点击模态框外部关闭
-    elements.successModal.addEventListener('click', (e) => {
-        if (e.target === elements.successModal || e.target.classList.contains('modal-overlay')) {
-            elements.successModal.style.display = 'none';
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal(elements.successModal);
+            closeModal(elements.rulesModal);
+            closeModal(elements.strategyModal);
         }
     });
 }
