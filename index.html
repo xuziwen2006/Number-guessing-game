@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>">
 </head>
 <body>
     <div class="container">
@@ -36,7 +35,7 @@
 
         <!-- 主游戏区 -->
         <main class="main">
-            <!-- 左侧：历史记录 -->
+            <!-- 左侧：历史记录（移动端显示在上方） -->
             <section class="history-section">
                 <div class="section-header">
                     <h2><i class="fas fa-scroll"></i> 推理记录</h2>
@@ -63,7 +62,7 @@
                 </div>
             </section>
 
-            <!-- 右侧：游戏控制区 -->
+            <!-- 右侧：游戏控制区（移动端显示在下方） -->
             <section class="game-section">
                 <!-- 游戏简介 -->
                 <div class="intro-card">
@@ -147,9 +146,9 @@
             <div class="footer-content">
                 <p>© 2023 数字排雷 · 锻炼逻辑思维</p>
                 <div class="footer-links">
-                    <a href="#" class="link">游戏规则</a>
+                    <a href="#" class="link" id="rulesBtn">游戏规则</a>
                     <span class="dot">·</span>
-                    <a href="#" class="link">策略指南</a>
+                    <a href="#" class="link" id="strategyBtn">策略指南</a>
                 </div>
             </div>
         </footer>
@@ -195,6 +194,84 @@
                 <button class="modal-close" id="modalCloseBtn">
                     <i class="fas fa-times"></i>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 规则模态框 -->
+    <div id="rulesModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-card modal-sm">
+            <div class="modal-header">
+                <h3><i class="fas fa-book"></i> 游戏规则</h3>
+                <button class="modal-close close-rules">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="rules-content">
+                    <div class="rule-item">
+                        <div class="rule-number">1</div>
+                        <div class="rule-text">
+                            <h4>谜底数字</h4>
+                            <p>系统会生成一个<strong>四位无重复数字</strong>（0-9），如：1234、0587等。</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">2</div>
+                        <div class="rule-text">
+                            <h4>如何猜测</h4>
+                            <p>每次输入一个4位数字进行猜测，数字可以重复（如：1122）。</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">3</div>
+                        <div class="rule-text">
+                            <h4>反馈机制</h4>
+                            <p>系统只反馈<strong>数字和位置完全匹配</strong>的个数。例如谜底是1234，猜测是1030，则反馈为2（第1位的1和第3位的3）。</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">4</div>
+                        <div class="rule-text">
+                            <h4>游戏目标</h4>
+                            <p>用最少的次数推理出谜底数字，挑战自己的最佳记录。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 策略模态框 -->
+    <div id="strategyModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-card modal-sm">
+            <div class="modal-header">
+                <h3><i class="fas fa-chess-knight"></i> 策略指南</h3>
+                <button class="modal-close close-strategy">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="strategy-content">
+                    <div class="strategy-item">
+                        <h4><i class="fas fa-crosshairs"></i> 第一步：广度搜索</h4>
+                        <p>先用1-2次猜测覆盖大量数字，如1234和5678，确定数字大致范围。</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4><i class="fas fa-bullseye"></i> 第二步：定位数字</h4>
+                        <p>根据反馈确定哪些数字在谜底中，然后测试它们的位置。</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4><i class="fas fa-sync-alt"></i> 第三步：排除法</h4>
+                        <p>利用反馈为0的猜测，排除不可能的数字和位置组合。</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4><i class="fas fa-chart-line"></i> 第四步：系统测试</h4>
+                        <p>对剩余可能性进行有序测试，优先测试覆盖面广的组合。</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
