@@ -35,34 +35,7 @@
 
         <!-- 主游戏区 -->
         <main class="main">
-            <!-- 左侧：历史记录（移动端显示在上方） -->
-            <section class="history-section">
-                <div class="section-header">
-                    <h2><i class="fas fa-scroll"></i> 推理记录</h2>
-                    <div class="record-info">
-                        <span id="totalAttempts">0</span> 次尝试
-                    </div>
-                </div>
-                
-                <div class="history-container">
-                    <div class="history-list" id="historyList">
-                        <div class="empty-state">
-                            <div class="empty-icon">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <h3>开始你的推理之旅</h3>
-                            <p>每次猜测都会记录在这里，帮助你分析规律</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="history-tips">
-                    <i class="fas fa-lightbulb"></i>
-                    <span>观察匹配数变化，寻找数字位置规律</span>
-                </div>
-            </section>
-
-            <!-- 右侧：游戏控制区（移动端显示在下方） -->
+            <!-- 左侧：游戏目标和输入区 -->
             <section class="game-section">
                 <!-- 游戏简介 -->
                 <div class="intro-card">
@@ -137,6 +110,33 @@
                         <i class="fas fa-trash"></i>
                         重置游戏
                     </button>
+                </div>
+            </section>
+
+            <!-- 右侧：推理记录 -->
+            <section class="history-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-scroll"></i> 推理记录</h2>
+                    <div class="record-info">
+                        <span id="totalAttempts">0</span> 次尝试
+                    </div>
+                </div>
+                
+                <div class="history-container">
+                    <div class="history-list" id="historyList">
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>开始你的推理之旅</h3>
+                            <p>每次猜测都会记录在这里，帮助你分析规律</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="history-tips">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>观察匹配数变化，寻找数字位置规律</span>
                 </div>
             </section>
         </main>
